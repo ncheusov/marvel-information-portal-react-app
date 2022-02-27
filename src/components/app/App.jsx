@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState } from "react";
 import PropTypes from 'prop-types';
 
 import AppHeader from "../appHeader/AppHeader";
@@ -9,38 +9,33 @@ import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 
 import decoration from '../../resources/img/vision.png';
 
-class  App extends Component {
-    state = {
-        selectedChar: null
+const  App = () =>  {
+
+    const [selectedChar, setChar] = useState(null);
+
+    const  onCharSeleceted = (id) => {
+        setChar(id);
     }
 
-    onCharSeleceted = (id) => {
-        this.setState({
-            selectedChar: id
-        })
-    }
-
-    render() {
-        return (
-            <div className="app">
-                <AppHeader/>
-                <main>
+    return (
+        <div className="app">
+            <AppHeader/>
+            <main>
+                <ErrorBoundary>
+                    <RandomChar/>
+                </ErrorBoundary>
+                <div className="char__content">
                     <ErrorBoundary>
-                        <RandomChar/>
+                        <CharList onCharSeleceted={onCharSeleceted}/>
                     </ErrorBoundary>
-                    <div className="char__content">
-                        <ErrorBoundary>
-                            <CharList onCharSeleceted={this.onCharSeleceted}/>
-                        </ErrorBoundary>
-                        <ErrorBoundary>
-                            <CharInfo charId={this.state.selectedChar}/>
-                        </ErrorBoundary>
-                    </div>
-                    <img className="bg-decoration" src={decoration} alt="vision"/>
-                </main>
-            </div>
-        )
-    }
+                    <ErrorBoundary>
+                        <CharInfo charId={selectedChar}/>
+                    </ErrorBoundary>
+                </div>
+                <img className="bg-decoration" src={decoration} alt="vision"/>
+            </main>
+        </div>
+    )
 }
 
 export default App;
