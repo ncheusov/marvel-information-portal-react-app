@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
 
 import AppHeader from "../appHeader/AppHeader";
 import RandomChar from "../randomChar/RandomChar";
@@ -28,9 +27,9 @@ const  App = () =>  {
                     <ErrorBoundary>
                         <CharList onCharSeleceted={onCharSeleceted}/>
                     </ErrorBoundary>
-                    <ErrorBoundary>
+                    {/* <ErrorBoundary>
                         <CharInfo charId={selectedChar}/>
-                    </ErrorBoundary>
+                    </ErrorBoundary> */}
                 </div>
                 <img className="bg-decoration" src={decoration} alt="vision"/>
             </main>
