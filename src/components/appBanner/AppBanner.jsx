@@ -10,7 +10,9 @@ const AppBanner = () => {
                 New comics every week!<br/>
                 Stay tuned!
             </div>
-            <img src={avengersLogo} alt="Avengers Logo" />
+            <img src={avengersLogo} alt="Avengers logo"/>
         </div>
     )
 }
+
+export default AppBanner;

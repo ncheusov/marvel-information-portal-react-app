@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react"
+import { useState, useCallback } from "react";
 
 export const useHttp = () => {
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ export const useHttp = () => {
 
             const data = await response.json();
 
-            setLoading(true);
+            setLoading(false);
             return data;
         } catch(e) {
             setLoading(false);
