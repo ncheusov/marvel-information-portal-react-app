@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import AppHeader from "../appHeader/AppHeader";
 import RandomChar from "../randomChar/RandomChar";
 import CharList from "../charList/CharList";
@@ -21,7 +23,7 @@ const App = () => {
         <div className="app">
             <AppHeader/>
             <main>
-                <ErrorBoundary>
+                {/* <ErrorBoundary>
                     <RandomChar/>
                 </ErrorBoundary>
                 <div className="char__content">
@@ -31,10 +33,10 @@ const App = () => {
                     <ErrorBoundary>
                         <CharInfo charId={selectedChar}/>
                     </ErrorBoundary>
-                </div>
+                </div> */}
                 <img className="bg-decoration" src={decoration} alt="vision"/>
-                {/* <AppBanner/>
-                <ComicsList/> */}
+                <AppBanner/>
+                <ComicsList/>
             </main>
         </div>
     )
