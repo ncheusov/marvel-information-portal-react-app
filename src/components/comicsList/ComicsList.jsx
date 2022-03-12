@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import useMarvelService from '../../services/MarvelService';
-import Spinner from '../spinner/spinner';
+import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
 import './comicsList.scss';
@@ -11,7 +10,7 @@ import './comicsList.scss';
 const ComicsList = () => {
 
     const [comicsList, setComicsList] = useState([]);
-    const [newItemLoading, setNewItemLoading] = useState(false);
+    const [newItemLoading, setnewItemLoading] = useState(false);
     const [offset, setOffset] = useState(0);
     const [comicsEnded, setComicsEnded] = useState(false);
 
@@ -19,48 +18,41 @@ const ComicsList = () => {
 
     useEffect(() => {
         onRequest(offset, true);
-        // eslint-disable-next-line
     }, [])
 
     const onRequest = (offset, initial) => {
-        initial ? setNewItemLoading(false) : setNewItemLoading(true);
+        initial ? setnewItemLoading(false) : setnewItemLoading(true);
         getAllComics(offset)
             .then(onComicsListLoaded)
     }
 
     const onComicsListLoaded = (newComicsList) => {
         let ended = false;
-        if(newComicsList.length < 8) {
+        if (newComicsList.length < 8) {
             ended = true;
         }
-
-        setComicsList(comicsList => [...comicsList, ...newComicsList]);
-        setNewItemLoading(newItemLoading => false);
-        setOffset(offset => offset + 8);
+        setComicsList([...comicsList, ...newComicsList]);
+        setnewItemLoading(false);
+        setOffset(offset + 8);
         setComicsEnded(ended);
     }
 
-    function renderItems(arr) {
+    function renderItems (arr) {
         const items = arr.map((item, i) => {
             return (
-            <CSSTransition key={i} timeout={500} classNames="comics__item">
-                <li className="comics__item"
-                    tabIndex={0}>
+                <li className="comics__item" key={i}>
                     <Link to={`/comics/${item.id}`}>
                         <img src={item.thumbnail} alt={item.title} className="comics__item-img"/>
                         <div className="comics__item-name">{item.title}</div>
                         <div className="comics__item-price">{item.price}</div>
                     </Link>
-                 </li>
-            </CSSTransition>   
+                </li>
             )
         })
 
         return (
             <ul className="comics__grid">
-                <TransitionGroup component={null}>
-                    {items}
-                </TransitionGroup>
+                {items}
             </ul>
         )
     }
@@ -72,11 +64,11 @@ const ComicsList = () => {
 
     return (
         <div className="comics__list">
-           {errorMessage}
-           {spinner}
-           {items}
+            {errorMessage}
+            {spinner}
+            {items}
             <button 
-                disabled={newItemLoading}
+                disabled={newItemLoading} 
                 style={{'display' : comicsEnded ? 'none' : 'block'}}
                 className="button button__main button__long"
                 onClick={() => onRequest(offset)}>

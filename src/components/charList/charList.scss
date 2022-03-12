@@ -34,11 +34,9 @@
         }
         &-enter {
             opacity: 0;
-            transform: scale(0.9);
         }
-        &-active {
+        &-enter-active {
             opacity: 1;
-            transform: translateX(0);
             transition: opacity 500ms ease-in;
         }
         &-exit {
@@ -55,5 +53,5 @@
         line-height: 29px;
         text-transform: uppercase;
         color: #fff;
-    }
+    } 
 }
