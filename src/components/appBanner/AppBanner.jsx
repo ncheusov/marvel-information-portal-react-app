@@ -15,6 +15,4 @@ const AppBanner = () => {
     )
 }
 
-const klklk = 1;
-
 export default AppBanner;
