@@ -20,8 +20,8 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "start-dev": "react-scripts start",
-    "start": "serve -s build",
+    "start": "react-scripts start",
+    "build": "serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
